@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companies.component.css'],
 })
 export class CompaniesComponent implements OnInit {
+  // TODO: create companies that gets and pushes companies to database
+  // TODO: companies list is retrieved from database
+  // TODO: new component for company-search
+  // TODO: company dashboard shows how many companies
   showDetails = false;
   selectedDetail!: number;
   list = [
