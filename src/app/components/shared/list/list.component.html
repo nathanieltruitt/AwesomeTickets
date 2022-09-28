@@ -1,0 +1,38 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <ng-container *ngIf="windowWidth > 700">
+        <th scope="col" *ngFor="let header of headers">
+          {{ header }}
+        </th>
+      </ng-container>
+      <ng-container *ngIf="windowWidth <= 700">
+        <th scope="col" *ngFor="let header of headers.slice(0, 2)">
+          {{ header }}
+        </th>
+      </ng-container>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <ng-container *ngIf="windowWidth > 700">
+        <td *ngFor="let data of getData(i); let i = index">
+          {{ data }}
+        </td>
+      </ng-container>
+      <ng-container *ngIf="windowWidth <= 700">
+        <td *ngFor="let data of getData(i).slice(0, 2)">
+          {{ data }}
+        </td>
+      </ng-container>
+      <td>
+        <button class="btn btn-primary" (click)="getDetails($event)">
+          Details
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

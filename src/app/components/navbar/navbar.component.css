@@ -1,0 +1,26 @@
+.at-navbar {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid black;
+}
+
+.at-nav {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.at-item {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.at-link {
+  color: black;
+}

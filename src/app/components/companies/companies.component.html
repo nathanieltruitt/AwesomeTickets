@@ -1,0 +1,20 @@
+<div class="container-md">
+  <div *ngIf="showDetails" class="overlay">
+    <app-company-details
+      (closeEvent)="showDetails = !showDetails"
+      [detailId]="selectedDetail"
+    ></app-company-details>
+  </div>
+  <app-list
+    (clickDetails)="switchDetails($event)"
+    [headers]="[
+      'Company ID',
+      'Company',
+      'Contact',
+      'Number of Tickets',
+      'Assigned',
+      'Phone'
+    ]"
+    [rows]="list"
+  ></app-list>
+</div>
