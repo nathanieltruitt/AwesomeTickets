@@ -1,1 +1,7 @@
-<p>services works!</p>
+<!-- <div *ngIf="showDetail" class="overlay"></div> -->
+<div class="d-flex justify-content-center">
+  <button (click)="showDetail = !showDetail" class="btn btn-primary">
+    Open Ticket
+  </button>
+</div>
+<app-ticket></app-ticket>

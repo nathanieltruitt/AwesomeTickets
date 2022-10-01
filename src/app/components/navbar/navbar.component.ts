@@ -22,6 +22,5 @@ export class NavbarComponent implements OnInit {
 
   changeToWhite() {
     this.changeColor = !this.changeColor;
-    console.log(this.changeColor);
   }
 }

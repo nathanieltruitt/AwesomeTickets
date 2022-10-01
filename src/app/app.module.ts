@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Firebase modules
 import { AngularFireModule } from '@angular/fire/compat';
@@ -12,12 +13,11 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ServiceBoardComponent } from './components/services/service-board/service-board.component';
-import { ServiceBoardListComponent } from './components/services/service-board-list/service-board-list.component';
-import { ContactListComponent } from './components/contacts/contact-list/contact-list.component';
 import { CompanyDashboardComponent } from './components/companies/company-dashboard/company-dashboard.component';
 import { ListComponent } from './components/shared/list/list.component';
 import { CompanyDetailsComponent } from './components/shared/company-details/company-details.component';
+import { ContactDetailsComponent } from './components/shared/contact-details/contact-details.component';
+import { TicketComponent } from './components/shared/ticket/ticket.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDPpUVwBCPqOCdaTHao2d0QczmdNDAiZbY',
@@ -33,13 +33,12 @@ const firebaseConfig = {
   declarations: [
     AppComponent,
     NavbarComponent,
-    ServiceBoardComponent,
-    ServiceBoardListComponent,
-    ContactListComponent,
     CompanyDashboardComponent,
     RoutingComponents,
     ListComponent,
     CompanyDetailsComponent,
+    ContactDetailsComponent,
+    TicketComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +49,7 @@ const firebaseConfig = {
     AngularFireStorageModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ],
   providers: [{ provide: Window, useValue: window }],
   bootstrap: [AppComponent],

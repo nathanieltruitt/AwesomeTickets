@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { dbService } from 'src/app/services/db.service';
+import { Company } from 'src/app/interfaces/company.interface';
 
 @Component({
   selector: 'app-companies',
@@ -6,54 +8,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companies.component.css'],
 })
 export class CompaniesComponent implements OnInit {
-  // TODO: create companies that gets and pushes companies to database
-  // TODO: companies list is retrieved from database
   // TODO: new component for company-search
   // TODO: company dashboard shows how many companies
+  // TODO: statuses list per company
   showDetails = false;
-  selectedDetail!: number;
-  list = [
-    {
-      'Company ID': '1',
-      company: 'Derpy Co.',
-      contact: 'John Cena',
-      'Number of Tickets': '20',
-      assigned: 'Michael Scott',
-      Phone: '2707097871',
-    },
-    {
-      'Company ID': '2',
-      company: 'Derpy Co.',
-      contact: 'John Cena',
-      'Number of Tickets': '20',
-      assigned: 'Michael Scott',
-      Phone: '2707097871',
-    },
-    {
-      'Company ID': '3',
-      company: 'Derpy Co.',
-      contact: 'John Cena',
-      'Number of Tickets': '20',
-      assigned: 'Michael Scott',
-      Phone: '2707097871',
-    },
-    {
-      'Company ID': '4',
-      company: 'Derpy Co.',
-      contact: 'John Cena',
-      'Number of Tickets': '20',
-      assigned: 'Michael Scott',
-      Phone: '2707097871',
-    },
-  ];
-  constructor() {}
+  selectedDetail!: number | null;
+  isCompany!: boolean;
+  show = false;
+  list!: Company[];
 
-  ngOnInit(): void {}
+  constructor(private dbService: dbService) {}
+
+  ngOnInit(): void {
+    //  ? move this into list component
+  }
 
   switchDetails(event: any) {
     this.selectedDetail = Number(
       event.originalTarget.parentElement.parentElement.children[1].innerText
     );
+    this.isCompany =
+      event.originalTarget.parentElement.parentElement.children[1].offsetParent
+        .id === 'Company'
+        ? true
+        : false;
     this.showDetails = !this.showDetails;
+  }
+
+  addCompanyOrContact(entity: 'Company' | 'Contact') {
+    // set selected detail to null so that we do not poll for data
+    if (entity === 'Company') this.isCompany = true;
+    else this.isCompany = false;
+    this.selectedDetail = null;
+    this.showDetails = !this.showDetails;
+    this.show = !this.show;
   }
 }
