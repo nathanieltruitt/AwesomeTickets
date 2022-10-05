@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey: 'AIzaSyDPpUVwBCPqOCdaTHao2d0QczmdNDAiZbY',
+  authDomain: 'awesometickets-db409.firebaseapp.com',
+  projectId: 'awesometickets-db409',
+  storageBucket: 'awesometickets-db409.appspot.com',
+  messagingSenderId: '339699692161',
+  appId: '1:339699692161:web:e966a231627a4b400a1380',
+  measurementId: 'G-NWJK278S01',
 };
 
 /*

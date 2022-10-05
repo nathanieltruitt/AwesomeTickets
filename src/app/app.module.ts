@@ -19,14 +19,16 @@ import { CompanyDetailsComponent } from './components/shared/company-details/com
 import { ContactDetailsComponent } from './components/shared/contact-details/contact-details.component';
 import { TicketComponent } from './components/shared/ticket/ticket.component';
 
+import { environment } from 'src/environments/environment';
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDPpUVwBCPqOCdaTHao2d0QczmdNDAiZbY',
-  authDomain: 'awesometickets-db409.firebaseapp.com',
-  projectId: 'awesometickets-db409',
-  storageBucket: 'awesometickets-db409.appspot.com',
-  messagingSenderId: '339699692161',
-  appId: '1:339699692161:web:e966a231627a4b400a1380',
-  measurementId: 'G-NWJK278S01',
+  apiKey: environment.apiKey,
+  authDomain: environment.authDomain,
+  projectId: environment.projectId,
+  storageBucket: environment.storageBucket,
+  messagingSenderId: environment.messagingSenderId,
+  appId: environment.appId,
+  measurementId: environment.measurementId,
 };
 
 @NgModule({
