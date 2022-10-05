@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { Company } from '../interfaces/company.interface';
 import { Contact } from '../interfaces/contact.interface';
 import { Entity } from '../interfaces/entity.interface';
@@ -77,5 +77,41 @@ export class dbService {
     if (type === 'Companies') return this.companies$;
     if (type === 'Contacts') return this.contacts$;
     return this.tickets$;
+  }
+
+  filterContact(contactId: number) {
+    // * filter a contact name by its id.
+    return this.contacts$.pipe(
+      map((x) => x.filter((contact) => contact.id === contactId)),
+      take(1)
+    );
+  }
+
+  getFilteredTickets(companyId: number) {
+    // * returns observable of filtered tickets
+    return this.db
+      .collection('Tickets', (ref) => ref.where('company', '==', companyId))
+      .get();
+  }
+
+  getTicketList(searchValue: string | null) {
+    // look up company ID
+    if (searchValue) {
+      this.companies$
+        .pipe(
+          map((x) => x.filter((company) => company.id === Number(searchValue)))
+        )
+        .subscribe((companies) => {
+          if (companies.length === 1) {
+            // TODO: call db service to acquire filtered tickets
+            this.tickets$ = this.getFilteredTickets(companies[0].id).pipe(
+              map((frObject) => {
+                return frObject.docs.map((docs) => <Ticket>docs.data());
+              })
+            );
+          }
+        });
+    } else {
+    }
   }
 }

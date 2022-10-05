@@ -7,11 +7,21 @@
   </button>
 </div>
 <label for="company-select">Please enter a company</label>
-<select class="form-select" id="company-select" [(ngModel)]="searchValue">
-  <option>Please select a company</option>
-  <ng-container *ngIf="companies$ | async as companies">
-    <option *ngFor="let company of companies" [value]="company.id">
+<select
+  class="form-select"
+  id="company-select"
+  [(ngModel)]="searchValue"
+  (change)="searchTickets()"
+>
+  <option selected>Please select a company</option>
+  <ng-container *ngIf="getCompanies() | async as companies">
+    <option *ngFor="let company of companies" [ngValue]="company.id">
       {{ company.companyName }}
     </option>
   </ng-container>
 </select>
+<app-list
+  [entityType]="'Tickets'"
+  [headers]="['Ticket ID', 'Company', 'Contact Name', 'Assigned', 'Time']"
+  (clickDetails)="switchDetails($event)"
+></app-list>

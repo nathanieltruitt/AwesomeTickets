@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Company } from 'src/app/interfaces/company.interface';
+import { Ticket } from 'src/app/interfaces/ticket.interface';
 import { dbService } from 'src/app/services/db.service';
 
 @Component({
@@ -11,21 +12,29 @@ import { dbService } from 'src/app/services/db.service';
 export class ServicesComponent implements OnInit {
   // TODO: once user finishes entering a company name, api call populates list
   showDetail = false;
+  selectedDetail!: number;
   searchValue!: string;
-  companies$: Observable<Company[]>;
 
-  constructor(private dbService: dbService) {
-    this.companies$ = this.dbService.companies$;
-  }
+  constructor(private dbService: dbService) {}
 
   ngOnInit(): void {}
 
-  getTicketList() {
-    // look up company ID
-    this.dbService.companies$.pipe(
-      map((x) =>
-        x.filter((company) => company.companyName === this.searchValue)
-      )
+  getCompanies() {
+    return this.dbService.companies$;
+  }
+
+  getTickets() {
+    return this.dbService.tickets$;
+  }
+
+  searchTickets() {
+    this.dbService.getTicketList(this.searchValue);
+  }
+
+  switchDetails(event: any) {
+    this.selectedDetail = Number(
+      event.originalTarget.parentElement.parentElement.children[1].innerText
     );
+    this.showDetail = !this.showDetail;
   }
 }

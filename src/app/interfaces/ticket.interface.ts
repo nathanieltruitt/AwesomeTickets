@@ -5,10 +5,10 @@ import { Entity } from './entity.interface';
 
 export interface Ticket extends Entity {
   summary: string;
-  company: Company;
-  contact: Contact;
-  assigned: string; // TODO: change to User type
+  company: number;
+  contact: number;
+  assigned: string;
   time: number;
   description: string;
-  notes: Array<Note>;
+  notes: string;
 }

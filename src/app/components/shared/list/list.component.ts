@@ -11,6 +11,7 @@ import { isEntity } from 'src/app/interfaces/entity.interface';
 import { Company } from 'src/app/interfaces/company.interface';
 import { Contact } from 'src/app/interfaces/contact.interface';
 import { Ticket } from 'src/app/interfaces/ticket.interface';
+import { take, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -89,6 +90,20 @@ export class ListComponent implements OnInit {
           title: doc.title,
           cellNumber: doc.cellNumber,
           officeNumber: doc.officeNumber,
+        });
+      });
+    } else if (isEntity<Ticket>(<Ticket>data[0], 'summary')) {
+      data.forEach((doc: any) => {
+        this.dbService.filterContact(doc.contact).subscribe((contacts) => {
+          this.rows.push({
+            id: doc.id,
+            company: this.companyList.filter(
+              (company) => company.id === doc.company
+            )[0].companyName,
+            contact: `${contacts[0].firstName} + ${contacts[0].lastName}`,
+            assigned: doc.assigned,
+            time: doc.time,
+          });
         });
       });
     }
