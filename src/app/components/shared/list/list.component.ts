@@ -19,9 +19,8 @@ import { Ticket } from 'src/app/interfaces/ticket.interface';
 })
 export class ListComponent implements OnInit {
   // TODO: need to be able to implement filtering
-  @Input() tableId!: string;
   @Input() headers!: string[];
-  @Input() entityType!: 'Companies' | 'Contacts';
+  @Input() entityType!: 'Companies' | 'Contacts' | 'Tickets';
   // objects to list inside of the table
   rows!: object[];
   @Output() clickDetails = new EventEmitter();

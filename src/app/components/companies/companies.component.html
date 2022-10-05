@@ -47,7 +47,6 @@
   <div style="margin-bottom: 5rem">
     <app-list
       (clickDetails)="switchDetails($event)"
-      [tableId]="'Company'"
       [headers]="[
         'Company ID',
         'Company',
@@ -61,7 +60,6 @@
     <h1 class="my-3 display-2">Contacts</h1>
     <app-list
       (clickDetails)="switchDetails($event)"
-      [tableId]="'Contact'"
       [headers]="[
         'Contact ID',
         'First Name',

@@ -41,7 +41,6 @@ export class ContactDetailsComponent implements OnInit {
     this.dbService.contacts$.subscribe({
       next: (contacts) => {
         this.contactList = contacts;
-        console.log(this.contactList);
       },
     });
 

@@ -72,7 +72,7 @@ export class dbService {
   }
 
   getEntityType(
-    type: 'Companies' | 'Contacts'
+    type: 'Companies' | 'Contacts' | 'Tickets'
   ): Observable<Company[] | Contact[] | Ticket[]> {
     if (type === 'Companies') return this.companies$;
     if (type === 'Contacts') return this.contacts$;

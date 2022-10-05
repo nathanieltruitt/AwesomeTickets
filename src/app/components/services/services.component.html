@@ -1,7 +1,17 @@
-<!-- <div *ngIf="showDetail" class="overlay"></div> -->
+<div *ngIf="showDetail" class="overlay">
+  <app-ticket (closeTicketEvent)="showDetail = !showDetail"></app-ticket>
+</div>
 <div class="d-flex justify-content-center">
   <button (click)="showDetail = !showDetail" class="btn btn-primary">
     Open Ticket
   </button>
 </div>
-<app-ticket></app-ticket>
+<label for="company-select">Please enter a company</label>
+<select class="form-select" id="company-select" [(ngModel)]="searchValue">
+  <option>Please select a company</option>
+  <ng-container *ngIf="companies$ | async as companies">
+    <option *ngFor="let company of companies" [value]="company.id">
+      {{ company.companyName }}
+    </option>
+  </ng-container>
+</select>

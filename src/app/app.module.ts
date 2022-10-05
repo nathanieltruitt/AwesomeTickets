@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -51,6 +52,7 @@ const firebaseConfig = {
     AngularFireStorageModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
     NgxPaginationModule,
   ],
   providers: [{ provide: Window, useValue: window }],
