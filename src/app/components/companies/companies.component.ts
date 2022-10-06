@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { dbService } from 'src/app/services/db.service';
 import { Company } from 'src/app/interfaces/company.interface';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-companies',
@@ -15,7 +16,6 @@ export class CompaniesComponent implements OnInit {
   selectedDetail!: number | null;
   isCompany!: boolean;
   show = false;
-  list!: Company[];
 
   constructor(private dbService: dbService) {}
 
@@ -42,5 +42,15 @@ export class CompaniesComponent implements OnInit {
     this.selectedDetail = null;
     this.showDetails = !this.showDetails;
     this.show = !this.show;
+  }
+
+  getCompanies() {
+    return this.dbService.companies$.pipe(
+      map((companies) =>
+        companies.map((company) => {
+          delete company.address;
+        })
+      )
+    );
   }
 }
