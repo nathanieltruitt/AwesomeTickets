@@ -11,6 +11,7 @@ import { isEntity } from 'src/app/interfaces/entity.interface';
 import { Company } from 'src/app/interfaces/company.interface';
 import { Contact } from 'src/app/interfaces/contact.interface';
 import { Ticket } from 'src/app/interfaces/ticket.interface';
+import { Entity } from 'src/app/interfaces/entity.interface';
 import { take, map, Observable } from 'rxjs';
 
 @Component({
@@ -21,6 +22,7 @@ import { take, map, Observable } from 'rxjs';
 export class ListComponent implements OnInit {
   // TODO: need to be able to implement filtering
   @Input() headers!: string[];
+  @Input() entities$!: Observable<Entity[]>;
   @Input() entityType!: 'Companies' | 'Contacts' | 'Tickets';
   // objects to list inside of the table
   rows!: object[];
@@ -50,8 +52,8 @@ export class ListComponent implements OnInit {
     });
   }
 
-  getData(index: number): object[] {
-    return Object.values(this.rows[index]);
+  getData(entities: Entity[], index: number): object[] {
+    return Object.values(entities[index]);
   }
 
   @HostListener('window:resize', ['$event'])

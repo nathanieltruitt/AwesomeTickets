@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { dbService } from 'src/app/services/db.service';
 import { Company } from 'src/app/interfaces/company.interface';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-companies',
@@ -45,12 +45,16 @@ export class CompaniesComponent implements OnInit {
   }
 
   getCompanies() {
-    return this.dbService.companies$.pipe(
-      map((companies) =>
-        companies.map((company) => {
-          delete company.address;
-        })
+    return this.dbService.companies$
+      .pipe(
+        tap((companies) =>
+          companies.forEach((company) => delete company.address)
+        ),
+        map((companies: Company[]) =>
+          companies.sort(this.dbService.sortList())
+        ),
+        map((companies) => companies.map((company) => Object.values(company)))
       )
-    );
+      .subscribe((x) => console.log(x));
   }
 }
